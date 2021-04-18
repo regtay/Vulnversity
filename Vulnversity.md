@@ -96,13 +96,15 @@ cat phpext.txt
 ```
 
 Run this attack, what extension is allowed?
-```
+
+
 https://github.com/regtay/Vulnversity/blob/main/Images/Burpsuite%20View%20.png
 
 https://github.com/regtay/Vulnversity/blob/main/Images/Rervereshell%20upload.png
 
 https://github.com/regtay/Vulnversity/blob/main/Images/Upload%20.png
-```
+
+
 
 ```
 nc -lvnp 9001                                                                                   
