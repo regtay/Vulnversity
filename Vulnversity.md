@@ -96,9 +96,7 @@ cat phpext.txt
 ```
 
 Run this attack, what extension is allowed?
-add image burpsuite view <---------------------- <note to self>
-add image reverseshell upload <------------------ <note to self>
-add image upload <------------------ <note to self>
+https://github.com/regtay/Vulnversity/blob/main/Images/Burpsuite%20View%20.pnghttps://github.com/regtay/Vulnversity/blob/main/Images/Rervereshell%20upload.pnghttps://github.com/regtay/Vulnversity/blob/main/Images/Upload%20.png
 
 
 ```
