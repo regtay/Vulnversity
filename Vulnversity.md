@@ -129,7 +129,7 @@ $ cat /home/bill/user.txt
 $
 ```
 
-#### Privilege Escalation
+### Privilege Escalation
 
 On the system, search for all SUID files. What file stands out?
 ```
